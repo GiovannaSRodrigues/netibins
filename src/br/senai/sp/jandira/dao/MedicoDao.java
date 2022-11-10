@@ -1,42 +1,41 @@
+
 package br.senai.sp.jandira.dao;
 
-import java.util.ArrayList;
-
-import br.senai.sp.jandira.model.PlanoDeSaude;
-import java.io.BufferedWriter;
+import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class PlanoDeSaudeDao {
+public class MedicoDao {
+   private Medico medico;
 
-    private PlanoDeSaude planoDeSaude;
+    private static ArrayList<Medico> medicos = new ArrayList<>();
 
-    private static ArrayList<PlanoDeSaude> planos = new ArrayList<>();
-
-    private static final String ARQUIVO = "C:\\Users\\22282085\\java\\plano_saude.txt";
-    private static final String ARQUIVO_TEMP = "C:\\Users\\22282085\\java\\plano_saude_temp.txt";
+    private static final String ARQUIVO = "C:\\Users\\22282085\\java\\medico.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\22282085\\java\\medico_temp.txt";
 
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
 
-    public PlanoDeSaudeDao(PlanoDeSaude planoDeSaude) {
-        this.planos.add(planoDeSaude);
+    public MedicoDao(Medico medico) {
+        this.medicos.add(medico);
     }
 
-    public PlanoDeSaudeDao() {
+    public MedicoDao() {
 
     }
-
-    public static void gravar(PlanoDeSaude planoDeSaude) {
+    
+    public static void gravar(Medico medico) {
         try {
-            planos.add(planoDeSaude);
+           medicos.add(medico);
 
             BufferedWriter bw;
             bw = Files.newBufferedWriter(
@@ -44,9 +43,9 @@ public class PlanoDeSaudeDao {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            String novoPlanodeSaude = planoDeSaude.getPlanoDeSaudeSeparadoPorPontoEVirgula();
+            String novoMedico = medico.getMedicoSeparadoPorPontoEVirgula();
 
-            bw.write(novoPlanodeSaude);
+            bw.write(novoMedico);
             bw.newLine();
             bw.close();
 
@@ -58,11 +57,11 @@ public class PlanoDeSaudeDao {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     public static boolean excluir(Integer codigo) {
-        for (PlanoDeSaude p : planos) {
+        for (Medico p : medicos) {
             if (p.getCodigo().equals(codigo)) {
-                planos.remove(p);
+                medicos.remove(p);
                 break;
 
             }
@@ -79,8 +78,8 @@ public class PlanoDeSaudeDao {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            for (PlanoDeSaude p : planos) {
-                bwTemp.write(p.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+            for (Medico p : medicos) {
+                bwTemp.write(p.getMedicoSeparadoPorPontoEVirgula());
                 bwTemp.newLine();
 
             }
@@ -100,10 +99,9 @@ public class PlanoDeSaudeDao {
         return false;
 
     }
+    public static Medico getMedico(Integer codigo) {
 
-    public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
-
-        for (PlanoDeSaude p : planos) {
+        for (Medico p : medicos) {
             if (p.getCodigo().equals(codigo)) {
                 return p;
             }
@@ -111,22 +109,22 @@ public class PlanoDeSaudeDao {
 
         return null;
     }
-
-    public static void atualizar(PlanoDeSaude planoDeSaude) {
-        for (PlanoDeSaude p : planos) {
-            if (p.getCodigo().equals(planoDeSaude.getCodigo())) {
-                planos.set(planos.indexOf(p), planoDeSaude);
+    
+     public static void atualizar(Medico medico) {
+        for (Medico p : medicos) {
+            if (p.getCodigo().equals(medico.getCodigo())) {
+                medicos.set(medicos.indexOf(p), medico);
             }
         }
 
     }
-
-    public static ArrayList<PlanoDeSaude> listarTodos() {
+     
+      public static ArrayList<Medico> listarTodos() {
         
-        return planos;
+        return medicos;
     }
 
-    public static void getListaPlanoDeSaude() {
+    public static void getListaMedico() {
         try {
             BufferedReader bufferReader = Files.newBufferedReader(PATH);
 
@@ -136,7 +134,7 @@ public class PlanoDeSaudeDao {
 
                 String[] linhaVetor = linha.split(";");
 
-                planos.add(new PlanoDeSaude(Integer.valueOf(linhaVetor[0]), linhaVetor[1], linhaVetor[2]));
+                medicos.add(new Medico(Integer.valueOf(linhaVetor[0]), linhaVetor[1], linhaVetor[2]));
 
                 linha = bufferReader.readLine();
             }
@@ -149,24 +147,24 @@ public class PlanoDeSaudeDao {
 
 
     }
-
+    
     public static DefaultTableModel getTableModel() {
 
         // Matriz que receberá s planos de saúde
         // que serão utiizados na Tabela (Jtable)
-        Object[][] dados = new Object[planos.size()][3];
+        Object[][] dados = new Object[medicos.size()][3];
 
         // For Each, para extrair cada objeto plano de saúde do 
         // arrayList planos e separar cada dado na matriz dados
         int i = 0;
-        for (PlanoDeSaude p : planos) {
+        for (Medico p : medicos) {
             dados[i][0] = p.getCodigo();
             dados[i][1] = p.getOperadora();
             dados[i][2] = p.getTipoDoPlano();
             i++;
         }
         // Defnir um vetor com os nomes das colunas da tabela 
-        String[] titulos = {"Código", "Nome da operadora", "Tipo do Plano"};
+        String[] titulos = {"Código", "CRM", "Nome do Medico"};
 
         // Criar o modelo que será utilizado pela JTable
         // para exibir os dados dos planos 
@@ -174,5 +172,4 @@ public class PlanoDeSaudeDao {
 
         return tableModel;
     }
-
 }

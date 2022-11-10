@@ -1,20 +1,33 @@
-/*
- */
 package br.senai.sp.jandira.dao;
 
 import java.util.ArrayList;
-
 import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- */
+
 public class EspecialidadeDao {
+
+    private static Iterable<PlanoDeSaude> planos;
 
     private Especialidade especialidade;
 
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+    
+    private static final String ARQUIVO = "C:\\Users\\22282085\\java\\especialidade.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\22282085\\java\\especialidade_temp.txt";
+    
+    private static final Path PATH = Paths.get(ARQUIVO);
+    private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
+    
 
     public EspecialidadeDao(Especialidade especialidade) {
         this.especialidades.add(especialidade);
@@ -26,22 +39,75 @@ public class EspecialidadeDao {
     //deixar estâtico para não precisar criar instâncias
 
     public static void gravar(Especialidade especialidade) {
-
+        try{
         //grava o plano de saude no planos
         especialidades.add(especialidade);
+        
+        BufferedWriter bw;
+            bw = Files.newBufferedWriter(
+                    PATH,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            String novoEspecialidade = especialidade.getEspecialidadeSeparadoPorPontoEVirgula();
+
+            bw.write(novoEspecialidade);
+            bw.newLine();
+            bw.close();
+            
+             } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao tentar abrir arquivo",
+                    "Erro ao gravar",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    public static void excluir(Integer codigo) {
+    public static boolean excluir(Integer codigo) {
         for (Especialidade p : especialidades) {
             if (p.getCodigo().equals(codigo)) {
                 especialidades.remove(p);
                 break;
-                
             }
         }
-         
-        
-    }
+                
+        File arquivoAtual = new File(ARQUIVO);
+        File arquivoTemp = new File(ARQUIVO_TEMP);
+
+        try {
+            arquivoTemp.createNewFile();
+
+            BufferedWriter bwTemp = Files.newBufferedWriter(
+                    PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            for (PlanoDeSaude p : planos) {
+                bwTemp.write(p.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+                bwTemp.newLine();
+
+            }
+
+            bwTemp.close();
+            arquivoAtual.delete();
+            arquivoTemp.renameTo(arquivoAtual);
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao criar o arquivo",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        return false;
+
+    
+
+            
+     }
+    
 
     public static Especialidade getEspecialidade(Integer codigo) {
 
@@ -95,7 +161,7 @@ public class EspecialidadeDao {
             i++;
         }
         // Defnir um vetor com os nomes das colunas da tabela 
-        String[] titulos = {"Código", "Nome da operadora", "Tipo do Plano"};
+        String[] titulos = {"Código", "Nome da Especialidade", "Descrição"};
 
         // Criar o modelo que será utilizado pela JTable
         // para exibir os dados dos planos 
