@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDao;
@@ -9,10 +6,6 @@ import br.senai.sp.jandira.model.PlanoDeSaude;
 import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 22282085
- */
 public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
     private TipoOperacao tipoOperacao;

@@ -2,7 +2,7 @@ package br.senai.sp.jandira.dao;
 
 import java.util.ArrayList;
 import br.senai.sp.jandira.model.Especialidade;
-import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadeDao {
 
-    private static Iterable<PlanoDeSaude> planos;
 
     private Especialidade especialidade;
 
@@ -83,8 +82,8 @@ public class EspecialidadeDao {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            for (PlanoDeSaude p : planos) {
-                bwTemp.write(p.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+            for (Especialidade p : especialidades) {
+                bwTemp.write(p.getEspecialidadeSeparadoPorPontoEVirgula());
                 bwTemp.newLine();
 
             }
@@ -134,15 +133,28 @@ public class EspecialidadeDao {
         return especialidades;
     }
 
-    public static void criarEspecialidadeTeste() {
-        Especialidade especialidade1 = new Especialidade("Cardiologista", "Cuida do coração e sistema circulatório");
-        Especialidade especialidade2 = new Especialidade("Fonoaudiologista", "Especialista em aspectos que envolvem comunicação e escrita");
-        Especialidade especialidade3 = new Especialidade("Dermatologista", "Tratar doenças relacionadas a pele");
-        Especialidade especialidade4 = new Especialidade("Endócrinologista", "Diagnosticar e tratar doenças relacionadas com hormônios e metabolismo ");
-        especialidades.add(especialidade1);
-        especialidades.add(especialidade2);
-        especialidades.add(especialidade3);
-        especialidades.add(especialidade4);
+ public static void getListaEspecialidade() {
+        try {
+            BufferedReader bufferReader = Files.newBufferedReader(PATH);
+
+            String linha = bufferReader.readLine();
+
+            while (linha != null) {
+
+                String[] linhaVetor = linha.split(";");
+                
+                especialidades.add(new Especialidade(Integer.valueOf(linhaVetor[0]), linhaVetor[1],linhaVetor[2]));
+                
+                linha = bufferReader.readLine();
+            }
+
+            bufferReader.close();
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "O arquivo não existe");
+        }
+
+
     }
 
     public static DefaultTableModel getTableModel() {

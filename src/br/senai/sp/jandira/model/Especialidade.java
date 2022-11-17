@@ -22,6 +22,14 @@ public class Especialidade {
         this.descricao = descricao;
         atualizarCodigo();
     }
+    
+    public Especialidade(Integer codigo,String nome, String descricao){
+        this.codigo = codigo;
+        this.nome =nome;
+        this.descricao = descricao;
+        this.contador = this.codigo;
+      atualizarCodigo();
+    }
 
     public String getNome() {
         return nome;

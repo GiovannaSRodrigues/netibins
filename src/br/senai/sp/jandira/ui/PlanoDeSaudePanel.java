@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDao;
@@ -10,10 +7,6 @@ import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-/**
- *
- * @author 22282085
- */
 public class PlanoDeSaudePanel extends javax.swing.JPanel {
 
     int linha;
@@ -63,6 +56,7 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
         buttonnew.setBackground(new java.awt.Color(204, 204, 255));
         buttonnew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/new.png"))); // NOI18N
         buttonnew.setToolTipText("new");
+        buttonnew.setPreferredSize(new java.awt.Dimension(300, 80));
         buttonnew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonnewActionPerformed(evt);

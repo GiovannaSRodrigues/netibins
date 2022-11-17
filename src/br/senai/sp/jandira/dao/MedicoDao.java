@@ -2,6 +2,7 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Medico;
+import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MedicoDao {
+    
+    
    private Medico medico;
 
     private static ArrayList<Medico> medicos = new ArrayList<>();
@@ -111,6 +114,7 @@ public class MedicoDao {
     }
     
      public static void atualizar(Medico medico) {
+         
         for (Medico p : medicos) {
             if (p.getCodigo().equals(medico.getCodigo())) {
                 medicos.set(medicos.indexOf(p), medico);
@@ -159,8 +163,8 @@ public class MedicoDao {
         int i = 0;
         for (Medico p : medicos) {
             dados[i][0] = p.getCodigo();
-            dados[i][1] = p.getOperadora();
-            dados[i][2] = p.getTipoDoPlano();
+            dados[i][1] = p.getCrm();
+            dados[i][2] = p.getNome();
             i++;
         }
         // Defnir um vetor com os nomes das colunas da tabela 
