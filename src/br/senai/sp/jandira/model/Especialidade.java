@@ -22,13 +22,13 @@ public class Especialidade {
         this.descricao = descricao;
         atualizarCodigo();
     }
-    
-    public Especialidade(Integer codigo,String nome, String descricao){
+
+    public Especialidade(Integer codigo, String nome, String descricao) {
         this.codigo = codigo;
-        this.nome =nome;
+        this.nome = nome;
         this.descricao = descricao;
         this.contador = this.codigo;
-      atualizarCodigo();
+        atualizarCodigo();
     }
 
     public String getNome() {
@@ -55,10 +55,14 @@ public class Especialidade {
         this.codigo = contador;
         contador++;
     }
-    public String  getEspecialidadeSeparadoPorPontoEVirgula(){
-            String especialidadeStr = this.codigo + ";" + this.operadora + ";" + this.tipoDaEspecalidade;
-            return especialidadeStr;
-        }
 
+    public String getEspecialidadeSeparadoPorPontoEVirgula() {
+        String especialidadeStr = this.codigo + ";" + this.operadora + ";" + this.tipoDaEspecalidade;
+        return especialidadeStr;
+    }
     
+    public static int getContador(){
+        return contador;
+    }
+
 }

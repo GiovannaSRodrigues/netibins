@@ -68,6 +68,14 @@ public class PlanoDeSaudeDao {
             }
         }
 
+        atualizarArquivo();
+
+        return false;
+
+    }
+    
+    public static void atualizarArquivo(){
+        
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
@@ -97,9 +105,7 @@ public class PlanoDeSaudeDao {
                     JOptionPane.ERROR_MESSAGE);
         }
 
-        return false;
-
-    }
+}
 
     public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
 
@@ -113,6 +119,7 @@ public class PlanoDeSaudeDao {
     }
 
     public static void atualizar(PlanoDeSaude planoDeSaude) {
+        
         for (PlanoDeSaude p : planos) {
             if (p.getCodigo().equals(planoDeSaude.getCodigo())) {
                 planos.set(planos.indexOf(p), planoDeSaude);

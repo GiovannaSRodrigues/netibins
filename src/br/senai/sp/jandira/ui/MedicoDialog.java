@@ -16,10 +16,8 @@ public class MedicoDialog extends javax.swing.JDialog {
         initComponents();
     }
 
-    MedicoDialog(Object object, boolean b, TipoOperacao tipoOperacao, Medico medico) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,12 +48,11 @@ public class MedicoDialog extends javax.swing.JDialog {
         labelnomemedico = new javax.swing.JLabel();
         jbuttondireita = new javax.swing.JButton();
         jbuttonesquerda = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListEspecialidade = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListMedico = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -212,37 +209,25 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel7.add(jbuttonesquerda);
         jbuttonesquerda.setBounds(180, 310, 60, 50);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        jListEspecialidade.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jListEspecialidade);
 
-        jPanel7.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 220, 140, 170);
+        jPanel7.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 220, 110, 160);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable2);
+        jListMedico.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jListMedico);
 
-        jPanel7.add(jScrollPane3);
-        jScrollPane3.setBounds(260, 220, 140, 170);
+        jPanel7.add(jScrollPane4);
+        jScrollPane4.setBounds(280, 220, 110, 160);
 
         jPanel6.add(jPanel7);
         jPanel7.setBounds(20, 10, 790, 400);
@@ -365,17 +350,18 @@ public class MedicoDialog extends javax.swing.JDialog {
         return true;
     
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttoncancelar1;
     private javax.swing.JButton buttonsalvar1;
+    private javax.swing.JList<String> jListEspecialidade;
+    private javax.swing.JList<String> jListMedico;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbuttondireita;
     private javax.swing.JButton jbuttonesquerda;
     private javax.swing.JLabel labelcodigo3;

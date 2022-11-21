@@ -1,8 +1,6 @@
-
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Medico;
-import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,9 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MedicoDao {
-    
-    
-   private Medico medico;
+
+    private Medico medico;
 
     private static ArrayList<Medico> medicos = new ArrayList<>();
 
@@ -35,10 +32,10 @@ public class MedicoDao {
     public MedicoDao() {
 
     }
-    
+
     public static void gravar(Medico medico) {
         try {
-           medicos.add(medico);
+            medicos.add(medico);
 
             BufferedWriter bw;
             bw = Files.newBufferedWriter(
@@ -60,16 +57,22 @@ public class MedicoDao {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public static boolean excluir(Integer codigo) {
-        for (Medico p : medicos) {
-            if (p.getCodigo().equals(codigo)) {
-                medicos.remove(p);
+        for (Medico m : medicos) {
+            if (m.getCodigo().equals(codigo)) {
+                medicos.remove(m);
                 break;
 
             }
         }
+        atualizarArquivo();
 
+        return false;
+
+    }
+
+    public static void atualizarArquivo() {
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
@@ -81,8 +84,8 @@ public class MedicoDao {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            for (Medico p : medicos) {
-                bwTemp.write(p.getMedicoSeparadoPorPontoEVirgula());
+            for (Medico m : medicos) {
+                bwTemp.write(m.getMedicoSeparadoPorPontoEVirgula());
                 bwTemp.newLine();
 
             }
@@ -99,32 +102,31 @@ public class MedicoDao {
                     JOptionPane.ERROR_MESSAGE);
         }
 
-        return false;
-
     }
+
     public static Medico getMedico(Integer codigo) {
 
-        for (Medico p : medicos) {
-            if (p.getCodigo().equals(codigo)) {
-                return p;
+        for (Medico m : medicos) {
+            if (m.getCodigo().equals(codigo)) {
+                return m;
             }
         }
 
         return null;
     }
-    
-     public static void atualizar(Medico medico) {
-         
-        for (Medico p : medicos) {
-            if (p.getCodigo().equals(medico.getCodigo())) {
-                medicos.set(medicos.indexOf(p), medico);
+
+    public static void atualizar(Medico medico) {
+        for (Medico m : medicos) {
+            if (m.getCodigo().equals(medico.getCodigo())) {
+                medicos.set(medicos.indexOf(m), medico);
             }
+
         }
 
     }
-     
-      public static ArrayList<Medico> listarTodos() {
-        
+
+    public static ArrayList<Medico> listarTodos() {
+
         return medicos;
     }
 
@@ -132,7 +134,8 @@ public class MedicoDao {
         try {
             BufferedReader bufferReader = Files.newBufferedReader(PATH);
 
-            String linha = bufferReader.readLine();
+            String linha = ""; 
+            linha = bufferReader.readLine();
 
             while (linha != null) {
 
@@ -149,9 +152,8 @@ public class MedicoDao {
             JOptionPane.showMessageDialog(null, "O arquivo não existe");
         }
 
-
     }
-    
+
     public static DefaultTableModel getTableModel() {
 
         // Matriz que receberá s planos de saúde
@@ -161,10 +163,10 @@ public class MedicoDao {
         // For Each, para extrair cada objeto plano de saúde do 
         // arrayList planos e separar cada dado na matriz dados
         int i = 0;
-        for (Medico p : medicos) {
-            dados[i][0] = p.getCodigo();
-            dados[i][1] = p.getCrm();
-            dados[i][2] = p.getNome();
+        for (Medico m : medicos) {
+            dados[i][0] = m.getCodigo();
+            dados[i][1] = m.getCrm();
+            dados[i][2] = m.getNome();
             i++;
         }
         // Defnir um vetor com os nomes das colunas da tabela 

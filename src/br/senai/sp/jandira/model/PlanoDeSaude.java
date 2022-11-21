@@ -1,7 +1,5 @@
 package br.senai.sp.jandira.model;
 
-import java.io.ObjectInputStream.GetField;
-
 //fora do métodos e deentro diretamente da classe PlanoDeSaude
 public class PlanoDeSaude {
 	// atributos

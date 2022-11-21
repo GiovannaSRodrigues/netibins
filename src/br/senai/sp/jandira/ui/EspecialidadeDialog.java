@@ -1,7 +1,4 @@
-/*;
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDao;
@@ -9,16 +6,13 @@ import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 
-/**
- */
+
 public class EspecialidadeDialog extends javax.swing.JDialog {
 
     private TipoOperacao tipoOperacao;
     private Especialidade especialidade;
 
-    /**
-     * Creates new form EspecialidadeDialog
-     */
+    
     public EspecialidadeDialog(java.awt.Frame parent, boolean modal, TipoOperacao tipoOperacao, Especialidade especialidade) {
 
         super(parent, modal);
@@ -32,7 +26,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     }
 
     private void preencherFormulario() {
-        labeltitulo.setText("Especialidade -" + tipoOperacao);
+       
         textcodigo.setText(especialidade.getCodigo().toString());
         textnome.setText(especialidade.getNome());
         textdescricao.setText(especialidade.getDescricao());

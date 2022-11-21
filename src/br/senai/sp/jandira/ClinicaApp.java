@@ -1,12 +1,5 @@
 package br.senai.sp.jandira;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Set;
-
-import javax.swing.JOptionPane;
-import br.senai.sp.jandira.model.Paciente;
-import br.senai.sp.jandira.model.PlanoDeSaude;
 import br.senai.sp.jandira.ui.HomeFrame;
 
 //import br.senai.sp.jandira.model.Agenda;

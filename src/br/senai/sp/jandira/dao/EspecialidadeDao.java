@@ -71,6 +71,13 @@ public class EspecialidadeDao {
             }
         }
                 
+        
+        atualizarArquivo();
+        return false;
+
+}
+    
+    public static void atualizarArquivo(){
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
@@ -99,13 +106,7 @@ public class EspecialidadeDao {
                     "Erro",
                     JOptionPane.ERROR_MESSAGE);
         }
-
-        return false;
-
-    
-
-            
-     }
+    }
     
 
     public static Especialidade getEspecialidade(Integer codigo) {

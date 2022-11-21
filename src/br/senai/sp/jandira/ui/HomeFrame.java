@@ -4,7 +4,7 @@ import br.senai.sp.jandira.dao.EspecialidadeDao;
 import br.senai.sp.jandira.dao.MedicoDao;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDao;
 
-import javax.swing.JTable;
+
 
 public class HomeFrame extends javax.swing.JFrame {
 
@@ -22,9 +22,9 @@ public class HomeFrame extends javax.swing.JFrame {
         PlanoDeSaudeDao.getListaPlanoDeSaude();
         EspecialidadeDao.getListaEspecialidade();
         MedicoDao.getListaMedico();
-       
-        
         initPanels();
+        
+        
 
     }
 

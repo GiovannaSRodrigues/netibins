@@ -42,8 +42,9 @@ public class Medico extends Pessoa {
     }
 
     private void atualizarCodigo() {
-        this.codigo = contador;
         contador++;
+        this.codigo = contador;
+
     }
 
     public String getMedicoSeparadoPorPontoEVirgula() {
