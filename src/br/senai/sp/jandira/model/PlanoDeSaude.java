@@ -35,7 +35,7 @@ public class PlanoDeSaude {
 	}
         
         public PlanoDeSaude(Integer codigo, String operadora, String tipoDoPlano) {
-            this.contador = this.codigo;
+            this.codigo = codigo;
             this.operadora = operadora;
             this.tipoDoplano = tipoDoPlano;
             this.codigo = codigo;

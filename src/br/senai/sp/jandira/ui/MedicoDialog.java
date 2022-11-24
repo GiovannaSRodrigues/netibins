@@ -1,6 +1,7 @@
 
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.EspecialidadeDao;
 import br.senai.sp.jandira.dao.MedicoDao;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
@@ -10,11 +11,32 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class MedicoDialog extends javax.swing.JDialog {
-
- private Medico medico;
-    public MedicoDialog() {
+    
+    private Medico medico;
+    private TipoOperacao tipoOperacao;
+    
+    int linha;
+    
+    public MedicoDialog(java.awt.Frame parent, boolean modal, TipoOperacao tipoOperacao, Medico medico) {
+        super(parent, modal);
         initComponents();
+        this.tipoOperacao = tipoOperacao;
+        this.medico = medico;
+        
+        if(tipoOperacao ==tipoOperacao.ALTERAR){
+            
+        }
     }
+    
+     private void preencherFormulario() {
+        textEmail.setText(medico.getEmail());
+        textFieldTelefone.setText(medico.getTelefone());
+        textcodigo.setText(medico.getCodigo().toString());
+        textcrm.setText(medico.getCrm());
+        textnomemedico.setText(medico.getNome());
+        
+     }
+   
 
    
     
@@ -39,9 +61,9 @@ public class MedicoDialog extends javax.swing.JDialog {
         buttonsalvar1 = new javax.swing.JButton();
         buttoncancelar1 = new javax.swing.JButton();
         labelespecialidade = new javax.swing.JLabel();
-        labelcodigo3 = new javax.swing.JLabel();
+        labelcodigo = new javax.swing.JLabel();
         textnomemedico = new javax.swing.JTextField();
-        textcodigo3 = new javax.swing.JTextField();
+        textcodigo = new javax.swing.JTextField();
         labelemail = new javax.swing.JLabel();
         textEmail = new javax.swing.JTextField();
         labelespmedico = new javax.swing.JLabel();
@@ -155,9 +177,9 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel7.add(labelespecialidade);
         labelespecialidade.setBounds(30, 190, 150, 16);
 
-        labelcodigo3.setText("Código:");
-        jPanel7.add(labelcodigo3);
-        labelcodigo3.setBounds(20, 40, 60, 16);
+        labelcodigo.setText("Código:");
+        jPanel7.add(labelcodigo);
+        labelcodigo.setBounds(20, 40, 60, 16);
 
         textnomemedico.setEditable(false);
         textnomemedico.setBackground(new java.awt.Color(204, 255, 255));
@@ -169,15 +191,15 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel7.add(textnomemedico);
         textnomemedico.setBounds(270, 60, 410, 22);
 
-        textcodigo3.setEditable(false);
-        textcodigo3.setBackground(new java.awt.Color(204, 255, 255));
-        textcodigo3.addActionListener(new java.awt.event.ActionListener() {
+        textcodigo.setEditable(false);
+        textcodigo.setBackground(new java.awt.Color(204, 255, 255));
+        textcodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textcodigo3ActionPerformed(evt);
+                textcodigoActionPerformed(evt);
             }
         });
-        jPanel7.add(textcodigo3);
-        textcodigo3.setBounds(20, 60, 100, 22);
+        jPanel7.add(textcodigo);
+        textcodigo.setBounds(20, 60, 100, 22);
 
         labelemail.setText("E-mail:");
         jPanel7.add(labelemail);
@@ -261,9 +283,9 @@ public class MedicoDialog extends javax.swing.JDialog {
      
     }//GEN-LAST:event_textnomemedicoActionPerformed
 
-    private void textcodigo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textcodigo3ActionPerformed
+    private void textcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textcodigoActionPerformed
         
-    }//GEN-LAST:event_textcodigo3ActionPerformed
+    }//GEN-LAST:event_textcodigoActionPerformed
 
     private void textFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDataActionPerformed
         // TODO add your handling code here:
@@ -364,7 +386,7 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbuttondireita;
     private javax.swing.JButton jbuttonesquerda;
-    private javax.swing.JLabel labelcodigo3;
+    private javax.swing.JLabel labelcodigo;
     private javax.swing.JLabel labelcrm;
     private javax.swing.JLabel labeldata;
     private javax.swing.JLabel labelemail;
@@ -379,7 +401,7 @@ public class MedicoDialog extends javax.swing.JDialog {
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textFieldData;
     private javax.swing.JTextField textFieldTelefone;
-    private javax.swing.JTextField textcodigo3;
+    private javax.swing.JTextField textcodigo;
     private javax.swing.JTextField textcrm;
     private javax.swing.JTextField textnomemedico;
     // End of variables declaration//GEN-END:variables

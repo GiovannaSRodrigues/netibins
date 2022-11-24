@@ -14,7 +14,7 @@ public class Medico extends Pessoa {
     }
 
     public Medico(Integer codigo, String crm, String nome) {
-        this.contador = this.codigo;
+        this.codigo = codigo;
         this.Crm = crm;
         setNome(nome);
         this.codigo = codigo;

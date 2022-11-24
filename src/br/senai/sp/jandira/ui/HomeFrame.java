@@ -69,7 +69,7 @@ public class HomeFrame extends javax.swing.JFrame {
         labelicon.setBounds(40, 20, 64, 70);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1090, 100);
+        jPanel1.setBounds(0, 0, 1100, 100);
 
         buttonexit.setBackground(new java.awt.Color(204, 204, 255));
         buttonexit.setFont(new java.awt.Font("Microsoft YaHei UI", 3, 12)); // NOI18N
@@ -96,11 +96,11 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Dados para Contato:");
         panelHome.add(jLabel1);
-        jLabel1.setBounds(900, 110, 174, 25);
+        jLabel1.setBounds(860, 110, 200, 25);
 
         jLabel2.setText("Telefone: (11)95555-5555");
         panelHome.add(jLabel2);
-        jLabel2.setBounds(950, 160, 130, 16);
+        jLabel2.setBounds(910, 160, 150, 16);
 
         jLabel3.setText("Sistema para Agendamento de Consultas");
         panelHome.add(jLabel3);
@@ -108,18 +108,18 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jLabel4.setText("E-mail: girodrigues03@gmail.com.br");
         panelHome.add(jLabel4);
-        jLabel4.setBounds(890, 140, 194, 16);
+        jLabel4.setBounds(850, 140, 220, 16);
 
         jLabel5.setText("www.sisacon.com.br");
         panelHome.add(jLabel5);
-        jLabel5.setBounds(970, 180, 110, 16);
+        jLabel5.setBounds(930, 180, 140, 16);
 
         jPanel2.setBackground(new java.awt.Color(153, 0, 153));
         panelHome.add(jPanel2);
         jPanel2.setBounds(10, 90, 1070, 2);
 
         getContentPane().add(panelHome);
-        panelHome.setBounds(0, 240, 1090, 490);
+        panelHome.setBounds(0, 240, 1100, 490);
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 255));
         jPanel3.setLayout(null);
@@ -203,9 +203,9 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonagenda1.setBounds(120, 30, 90, 70);
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(0, 100, 1090, 140);
+        jPanel3.setBounds(0, 100, 1100, 140);
 
-        setBounds(0, 0, 1105, 767);
+        setBounds(0, 0, 1115, 767);
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonpacientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonpacientActionPerformed
